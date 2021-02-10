@@ -1,0 +1,9 @@
+Python cgi programming is a script which tells the browser to do after the user inputs or sees the html file.
+CGI :
+follow the following steps to create a python cgi file:
+first create a python file this is your cgi python file, save it in the web server folder.
+create a html form with <form   action = the name of the cgi python file   method = get (or) post> and save the file in the same web server folder.
+open the cgi python file specified in the html file and type the program.
+open the web server and activate it.
+open the html file in the webserver and enter the inputs which is in the <form> tag.
+open the cgi python file in the webserver and you can see the program you enterd is running.

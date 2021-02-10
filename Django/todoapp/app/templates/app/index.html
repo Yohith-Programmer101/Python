@@ -1,0 +1,64 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do App</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="short icon" type="icon/image" href="https://to-do-cdn.microsoft.com/static-assets/c87265a87f887380a04cf21925a56539b29364b51ae53e089c3ee2b2180148c6/icons/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <style>
+        td{
+            width: 100%;
+            padding: 5px;
+            margin: 5px;
+            height: 50px;
+        }
+        table, tr{
+            border: 1px solid lightgrey;
+        }
+        table, tr{
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="#" class="navbar-brand" style="padding-left: 10px;">To Do App</a>
+    </nav>
+    <div class="container" style="padding-top: 10px;">
+        <div class="row">
+            <div class="col">
+                <h2>Add Item</h2>
+                <form action="a" method="POST" class="form-inline">
+                    {% csrf_token %}
+                    <input type="text" name="content" accesskey="s" class="form-control mb-2 mr-sm-2" placeholder="Type here...">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <ul style="padding-top: 10px;">
+                    <table>
+                        {% for todo_item in todo_items %}
+                        <tr>
+                            <td> <li style="border-radius: 5px; list-style: none;"> <small class="small" style=" border-radius: 2px; padding: 5px; background-color: grey; color: white;">{{ todo_item.added_date }}</small> <br> <p style="margin-top: 10px;"> {{ todo_item.text }} </p> </li> </td>
+                            <td style="display: flex; justify-content: space-around;">
+                                <form action="d/{{ todo_item.id }}/" method="POST">
+                                    {% csrf_token %}
+                                    <button class="btn btn-sm btn-danger" type="submit"><img style="width: 30px; height: 30px;" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/delete-1390069-1189298.png" alt=""></button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
